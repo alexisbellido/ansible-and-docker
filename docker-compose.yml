@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  pytest-1:
+    container_name: pytest-1
+    hostname: pytest-1
+    image: "alexisbellido/django:1.11"
+    command: ["/bin/bash"]
+
+  pytest-2:
+    container_name: pytest-2
+    hostname: pytest-2
+    image: "alexisbellido/django:1.11"
+    command: ["/bin/bash"]
+
