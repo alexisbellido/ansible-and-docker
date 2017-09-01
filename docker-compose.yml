@@ -14,3 +14,14 @@ services:
     image: "alexisbellido/django:1.11"
     command: ["/bin/bash"]
 
+  pytest-3:
+    container_name: pytest-3
+    hostname: pytest-3
+    image: "alexisbellido/django:1.11"
+    command: ["/bin/bash"]
+
+  pytest-4:
+    container_name: pytest-4
+    hostname: pytest-4
+    image: "alexisbellido/django:1.11"
+    command: ["/bin/bash"]
