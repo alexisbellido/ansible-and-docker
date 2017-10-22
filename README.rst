@@ -12,7 +12,7 @@ Launch the containers with Docker Compose.
 
 .. code-block:: bash
 
-    $ docker-compose up -d
+    $ docker-compose up
 
 This will leave Docker Compose in the foreground and the containers will stop as soon as you exit. To start all containers running in the background use -d for "detached" mode and then start the containers.
 
@@ -20,6 +20,19 @@ This will leave Docker Compose in the foreground and the containers will stop as
 
     $ docker-compose up -d
     $ docker-compose start
+
+
+Then you can get into bash on one of the containers, pytest-3 in this example.
+
+.. code-block:: bash
+
+  $ docker exec -it pytest-3 /bin/bash
+
+And because ``docker-compose.yml`` is set to forward the host's ssh agent you can use it to connect from the container as if you were on the host.
+
+.. code-block:: bash
+
+  root@pytest-3:~# ssh -T git@github.com
   
 Extra notes
 ----------------------------------------
@@ -68,3 +81,15 @@ To bypass the entrypoint script, use ``--entrypoint``. This also uses ``-it`` an
 .. code-block:: bash
 
   $ docker run -it --rm --network=project-network -w /root -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v $SSH_AUTH_SOCK:/run/ssh_agent -e SSH_AUTH_SOCK=/run/ssh_agent -v "$PWD"/django-project:/root/django-project -v "$PWD"/django-apps:/root/django-apps --env PROJECT_NAME=django-project --env SETTINGS_MODULE=locals3 --env POSTGRES_USER=user1 --env POSTGRES_PASSWORD=user_secret --env POSTGRES_DB=db1 --env POSTGRES_HOST=db1 -p 33332:8000 --hostname=app1-dev --name=app1-dev --entrypoint /bin/bash alexisbellido/django:1.11
+
+This goes directly to bash but exits afterwards. -i keeps STDIN open even if not attached and -t allocates a pseudo-tty.
+
+.. code-block:: bash
+
+  $ docker run -it --network=zinibu -w /root -v /Users/alexis/Projects/zinibu/django-project:/root/zinibu -v /Users/alexis/Projects/zinibu/django-apps:/root/django-apps --env PROJECT_NAME=zinibu -p 50001:8000 --hostname=pytest-1 --name=pytest-1 alexisbellido/django:1.11 /bin/bash
+
+This uses detached mode (-d) to keep one service in the container running. Note the *development* command for the entrypoint passed at the end.
+
+.. code-block:: bash
+  
+  $ docker run -d --network=zinibu -w /root -v /Users/alexis/Projects/zinibu/django-project:/root/zinibu -v /Users/alexis/Projects/zinibu/django-apps:/root/django-apps --env PROJECT_NAME=zinibu -p 50001:8000 --hostname=pytest-1 --name=pytest-1 alexisbellido/django:1.11 development

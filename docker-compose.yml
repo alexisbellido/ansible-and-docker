@@ -6,22 +6,64 @@ services:
     container_name: pytest-1
     hostname: pytest-1
     image: "alexisbellido/django:1.11"
-    command: ["/bin/bash"]
+    command: ["development"]
+    working_dir: /root
+    environment:
+      - PROJECT_NAME=zinibu
+      - SETTINGS_MODULE=locals3 
+      - POSTGRES_USER=user1 
+      - POSTGRES_PASSWORD=user_secret 
+      - POSTGRES_DB=db1 
+      - POSTGRES_HOST=db1 
+      - SSH_AUTH_SOCK=/run/ssh_agent
+    ports:
+      - "50001:8000"
+    volumes:
+      - ~/Projects/zinibu/django-project:/root/zinibu
+      - ~/Projects/zinibu/django-apps:/root/django-apps
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      - $SSH_AUTH_SOCK:/run/ssh_agent
 
-#  pytest-2:
-#    container_name: pytest-2
-#    hostname: pytest-2
-#    image: "alexisbellido/django:1.11"
-#    command: ["/bin/bash"]
-#
-#  pytest-3:
-#    container_name: pytest-3
-#    hostname: pytest-3
-#    image: "alexisbellido/django:1.11"
-#    command: ["/bin/bash"]
-#
-#  pytest-4:
-#    container_name: pytest-4
-#    hostname: pytest-4
-#    image: "alexisbellido/django:1.11"
-#    command: ["/bin/bash"]
+  pytest-2:
+    container_name: pytest-2
+    hostname: pytest-2
+    image: "alexisbellido/django:1.11"
+    command: ["development"]
+    working_dir: /root
+    environment:
+      - PROJECT_NAME=zinibu
+      - SETTINGS_MODULE=locals3 
+      - POSTGRES_USER=user1 
+      - POSTGRES_PASSWORD=user_secret 
+      - POSTGRES_DB=db1 
+      - POSTGRES_HOST=db1 
+      - SSH_AUTH_SOCK=/run/ssh_agent
+    ports:
+      - "50002:8000"
+    volumes:
+      - ~/Projects/zinibu/django-project:/root/zinibu
+      - ~/Projects/zinibu/django-apps:/root/django-apps
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      - $SSH_AUTH_SOCK:/run/ssh_agent
+
+  pytest-3:
+    container_name: pytest-3
+    hostname: pytest-3
+    image: "alexisbellido/django:1.11"
+    command: ["development"]
+    working_dir: /root
+    environment:
+      - PROJECT_NAME=zinibu
+      - SETTINGS_MODULE=locals3 
+      - POSTGRES_USER=user1 
+      - POSTGRES_PASSWORD=user_secret 
+      - POSTGRES_DB=db1 
+      - POSTGRES_HOST=db1 
+      - SSH_AUTH_SOCK=/run/ssh_agent
+    ports:
+      - "50003:8000"
+    volumes:
+      - ~/Projects/zinibu/django-project:/root/zinibu
+      - ~/Projects/zinibu/django-apps:/root/django-apps
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      - $SSH_AUTH_SOCK:/run/ssh_agent
