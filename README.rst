@@ -92,3 +92,15 @@ This uses detached mode (-d) to keep one service in the container running. Note 
 .. code-block:: bash
   
   $ docker run -d --network=zinibu -w /root -v /Users/alexis/Projects/zinibu/django-project:/root/zinibu -v /Users/alexis/Projects/zinibu/django-apps:/root/django-apps --env PROJECT_NAME=zinibu -p 50001:8000 --hostname=pytest-1 --name=pytest-1 alexisbellido/django:1.11 development
+
+Copy files from host to container_name
+
+.. code-block:: bash
+
+  $ docker cp docker-entrypoint.sh pytest-1:/usr/local/bin
+  
+Run entrypoint with `dev-test` to bypass `pip install`.
+  
+.. code-block:: bash
+  
+  $ docker exec -it pytest-1 docker-entrypoint.sh dev-test
