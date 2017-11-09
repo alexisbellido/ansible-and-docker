@@ -21,7 +21,6 @@ This will leave Docker Compose in the foreground and the containers will stop as
     $ docker-compose up -d
     $ docker-compose start
 
-
 Then you can get into bash on one of the containers, pytest-3 in this example.
 
 .. code-block:: bash
