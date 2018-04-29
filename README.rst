@@ -111,4 +111,4 @@ You can detach from a running container, the container will continue running, wi
 
   $ docker attach container-id
 
-The container had to be started (docker run) with -it for the key sequence to work. Use CTRL+c or exit to stop the container. See `docker attacj <https://docs.docker.com/engine/reference/commandline/attach/#parent-command>`_.
+The container had to be started (docker run) with -it for the key sequence to work. Use CTRL+c or exit to stop the container. See `docker attach <https://docs.docker.com/engine/reference/commandline/attach/>`_.
