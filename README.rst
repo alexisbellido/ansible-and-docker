@@ -1,7 +1,7 @@
 Ansible and Docker
 ========================================
 
-Some tests with Ansible and Docker.
+Tests with Ansible and Docker.
 
 See `Dockerize Django project <https://github.com/alexisbellido/dockerize-django/>`_ for more details.
 
