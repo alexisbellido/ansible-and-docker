@@ -104,3 +104,11 @@ Run entrypoint with `dev-test` to bypass `pip install`.
 .. code-block:: bash
   
   $ docker exec -it pytest-1 docker-entrypoint.sh dev-test
+
+You can detach from a running container, the container will continue running, with CTRL+p CTRL+q and then attach back.
+
+.. code-block:: bash
+
+  $ docker attach container-id
+
+The container had to be started (docker run) with -it for the key sequence to work. Use CTRL+c or exit to stop the container. See `docker attacj <https://docs.docker.com/engine/reference/commandline/attach/#parent-command>`_.
