@@ -104,3 +104,6 @@ ENV/
 *.sw[op]
 .bash_history
 .viminfo
+
+.python_history 
+.mysql_history 
