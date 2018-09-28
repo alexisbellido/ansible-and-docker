@@ -9,16 +9,17 @@ Create a network and a few containers on it so that they see each other.
 .. code-block:: bash
 
   $ docker network create -d bridge ansible-network
-  $ docker run -it -d --network=ansible-network --name ansible1 python:3.6.5-slim-stretch python
-  $ docker run -it -d --network=ansible-network --name ansible2 python:3.6.5-slim-stretch python
-  $ docker run -it -d --network=ansible-network --name ansible3 python:3.6.5-slim-stretch python
+  $ docker run -it -d --network=ansible-network --mount type=bind,source="$(pwd)",target=/root/ansible -w=/root/ansible --name ansible1 python:3.6.5-slim-stretch python
+  $ docker run -it -d --network=ansible-network --mount type=bind,source="$(pwd)",target=/root/ansible -w=/root/ansible --name ansible2 python:3.6.5-slim-stretch python
+  $ docker run -it -d --network=ansible-network --mount type=bind,source="$(pwd)",target=/root/ansible -w=/root/ansible --name ansible3 python:3.6.5-slim-stretch python
 
-Connect to one of the containers, install ping, and ping other container.
+Install ping and ping other container.
 
 .. code-block:: bash
 
+  $ docker exec ansible1 apt-get update
+  $ docker exec ansible1 apt-get install -y iputils-ping
   $ docker exec -it ansible1 /bin/bash
-  $ apt-get update && apt-get install -y iputils-ping
   $ ping ansible2
 
 TODO
