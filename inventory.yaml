@@ -1,0 +1,12 @@
+all:
+  hosts:
+    # uses ansible_connection smart, which is the default ssh-based connection
+    zinibu.local:
+    ansible1:
+      ansible_connection: docker
+      # ansible_host is optional if container name is different 
+      ansible_host: ansible1
+    ansible2:
+      ansible_connection: docker
+    ansible3:
+      ansible_connection: docker

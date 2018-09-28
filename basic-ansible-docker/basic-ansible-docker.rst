@@ -19,8 +19,21 @@ Install ping and ping other container.
 
   $ docker exec ansible1 apt-get update
   $ docker exec ansible1 apt-get install -y iputils-ping
+  $ docker exec -it ansible1 apt-get install -y python-apt
   $ docker exec -it ansible1 /bin/bash
   $ ping ansible2
+
+Now you can run Ansible, after installing it via pip on the host and creating an inventory file.
+
+.. code-block:: bash
+
+$ ansible -i inventory.yaml all -m ping 
+
+Installing python-apt is necessary for Debian to avoid this error. 
+
+.. code-block:: bash
+
+    "module_stderr": "/bin/sh: 1: /usr/bin/python: not found\n",
 
 TODO
 ========================
